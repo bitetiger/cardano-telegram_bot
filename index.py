@@ -8,8 +8,7 @@ bot = telegram.Bot(token=os.environ.get("TOKEN"))
 chat_id = 657656740
 
 api = BlockFrostApi(
-    project_id=os.environ.get("PROJECT_ID"),  # or export environment variable BLOCKFROST_PROJECT_ID
-    # optional: pass base_url or export BLOCKFROST_API_URL to use testnet, defaults to ApiUrls.mainnet.value
+    project_id=os.environ.get("PROJECT_ID"),
     base_url=ApiUrls.mainnet.value,
 )
 
@@ -17,18 +16,17 @@ print(api)
 
 try:
     health = api.health()
-    print(health)   # prints object:    HealthResponse(is_healthy=True)
+    print(health)   
    
-    # https://cardano-mainnet.blockfrost.io/api/v0/accounts/{stake_address}/rewards
     account_rewards = api.account_rewards(
-        stake_address='stake1uy9hdxvl76uzs4fuklvlrdwc040js5wt42dt2p6huhe409qptkur3',
+        stake_address=os.environ.get("STAKE_ADDRESS"),
         count=20,
     )
     print(account_rewards)
     
     
     ad = api.accounts(
-        stake_address='stake1uy9hdxvl76uzs4fuklvlrdwc040js5wt42dt2p6huhe409qptkur3',
+        stake_address=os.environ.get("STAKE_ADDRESS"),
     )
     print(ad)
     print(ad.withdrawable_amount)
