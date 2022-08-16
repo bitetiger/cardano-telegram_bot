@@ -5,7 +5,7 @@ import os
 load_dotenv()
 
 bot = telegram.Bot(token=os.environ.get("TOKEN"))
-chat_id = 657656740
+chat_id = token=os.environ.get("CHAT_ID")
 
 api = BlockFrostApi(
     project_id=os.environ.get("PROJECT_ID"),
