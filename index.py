@@ -26,18 +26,18 @@ def handler(update, context):
         bot.send_message(chat_id=os.environ.get("CHAT_ID"), 
                          text=cardano_api.ada_accounts_result,
                          parse_mode=ParseMode.HTML,
-                         disable_web_page_preview=True) # 답장 보내기
+                         disable_web_page_preview=True) 
         
-    elif user_text == "get balance": # 지갑의 assets 확인
+    elif user_text == "get balance": 
         result = json.dumps(cardano_api.ada_addresses_assets)
-        bot.send_message(chat_id=os.environ.get("CHAT_ID"), text=result) # 답장 보내기
+        bot.send_message(chat_id=os.environ.get("CHAT_ID"), text=result) 
         
-    elif user_text == "donation": # 사용자가 보낸 메세지가 "뭐해"면?
+    elif user_text == "donation": 
         result = "Donate ADA to support us \n＊ address : {}" .format(os.environ.get("DONATION_ADDRESS"))
-        bot.send_message(chat_id=os.environ.get("CHAT_ID"), text=result) # 답장 보내기
+        bot.send_message(chat_id=os.environ.get("CHAT_ID"), text=result) 
         
-    elif user_text == "register/change wallet": # 사용자가 보낸 메세지가 "뭐해"면?
-        bot.send_message(chat_id=os.environ.get("CHAT_ID"), text='stake_wallet 주소를 적어 주세요.') # 답장 보내기
+    elif user_text == "register/change wallet": 
+        bot.send_message(chat_id=os.environ.get("CHAT_ID"), text='stake_wallet 주소를 적어 주세요.')
         
     elif user_text.startswith('stake'):
         cardano_api.user_wallet = user_text
