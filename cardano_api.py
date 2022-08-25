@@ -30,6 +30,6 @@ assets_dic = {}
 for asset in ada_addresses_assets:
     print(asset.unit)
     print(asset.quantity)
-    assets_dic[asset.unit] = asset.quantity
+    assets_dic[asset.unit]= asset.quantity
 
 print(assets_dic)

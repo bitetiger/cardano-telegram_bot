@@ -1,2 +1,26 @@
 .env
 cardano_api.cpython-38.pyc
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+.DS_Store
+.idea/
+
+# Serverless directories
+.serverless
+vendored/
