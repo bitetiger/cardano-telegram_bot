@@ -8,11 +8,14 @@ provider:
   stage: dev
   region: ap-northeast-2
   environment:
-    TELEGRAM_TOKEN: ${env:TOKEN}
+    TOKEN: ${env:TOKEN}
+    PROJECT_ID: ${env:PROJECT_ID}
+    STAKE_ADDRESS: ${env:STAKE_ADDRESS}
+    DONATION_ADDRESS: ${env:DONATION_ADDRESS}
 
 functions:
   post:
-    handler: serverless.handler
+    handler: index.handler
     events:
       - http:
           path: my-custom-url
