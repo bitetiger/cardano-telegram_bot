@@ -24,3 +24,4 @@ var/
 # Serverless directories
 .serverless
 vendored/
+node_modules

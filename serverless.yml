@@ -4,7 +4,7 @@ useDotenv: true
 
 provider:
   name: aws
-  runtime: python3.9
+  runtime: python3.8
   stage: dev
   region: ap-northeast-2
   environment:
@@ -13,11 +13,44 @@ provider:
     STAKE_ADDRESS: ${env:STAKE_ADDRESS}
     DONATION_ADDRESS: ${env:DONATION_ADDRESS}
 
+
+layers:
+  layerOne:
+    path: python3 # required, path to layer contents on disk
+    name: test # optional, Deployed Lambda layer name
+    description: test # optional, Description to publish to AWS
+    compatibleRuntimes: # optional, a list of runtimes this layer is compatible with
+      - python3.9
+      - python3.8
+
+  layerTwo:
+    path: python3 # required, path to layer contents on disk
+    name: telegramLayer # optional, Deployed Lambda layer name
+    description: telegram bot modules # optional, Description to publish to AWS
+    compatibleRuntimes: # optional, a list of runtimes this layer is compatible with
+      - python3.9
+      - python3.8
+    
+    
+    #compatibleArchitectures: # optional, a list of architectures this layer is compatible with
+    # - x86_64
+    #  - arm64
+    #licenseInfo: GPLv3 # optional, a string specifying license information
+    # allowedAccounts: # optional, a list of AWS account IDs allowed to access this layer.
+    #   - '*'
+    # note: uncommenting this will give all AWS users access to this layer unconditionally.
+    retain: false
+
 functions:
   post:
     handler: index.handler
+    layers:
+      - arn:aws:lambda:ap-northeast-2:445242126442:layer:telegramLayer:latest
     events:
       - http:
-          path: my-custom-url
+          path: telegrambot
           method: post
           cors: true
+
+plugins:
+  - serverless-latest-layer-version

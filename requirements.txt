@@ -1,6 +1,4 @@
 telegram
-cardano_api
-
 dotenv
 os
 blockfrost
@@ -9,4 +7,4 @@ ApiUrls
 Updater
 ParseMode
 Filters
-MessageHandler
+MessageHandlers

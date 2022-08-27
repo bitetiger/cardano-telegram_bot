@@ -1,7 +1,6 @@
 import telegram
 from telegram.ext import Updater
 import cardano_api
-import json
 
 from telegram.ext import MessageHandler, Filters
 from telegram import ParseMode
