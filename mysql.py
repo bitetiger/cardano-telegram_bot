@@ -22,14 +22,14 @@ cur = conn.cursor()
 # cur.execute()
 
 # /start stake key 입력
-start = "insert into user values(%d, %s, %s, %s, %d, %s)"
+start = "insert into user values(1, 'user_name', 'first_name', 'ko', 1, 'stake_key')"
 #start_value = (chat_id, user_name, first_name, lan_code, count_request, stake_key)
-start_values = (1, 'user_name', 'first_name', 'ko', 1, 'stake_key')
-
-cur.execute(start, start_values)
+cur.execute(start)
 
 # get balance
 
 # about wallet
 
 # donate
+conn.commit()
+conn.close()
