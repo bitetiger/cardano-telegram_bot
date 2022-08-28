@@ -32,6 +32,8 @@ url만 제거 시 webhook 해제
 
 ## Database
 ### default
+- database : cardano_bot
+- table : user(봇 사용자), transaction(봇 사용자 트랜잭션)
 ```
 $ create database cardano_bot;
 $ use cardano_bot;
@@ -52,8 +54,6 @@ $ create table transaction(
 );
 
 ```
-
-
 ### user table
 - chat_id int NOT NULL // 채팅방 아이디   
 - user_name char(20) // telegram 아이디   
