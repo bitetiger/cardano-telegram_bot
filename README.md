@@ -30,7 +30,7 @@ callback_url = lambda API url
 https://api.telegram.org/bot${telegram_token}/setWebhook?url=
 url만 제거 시 webhook 해제
 
-## Database
+## MySQL Database
 ### default
 - database : cardano_bot
 - table : user(봇 사용자), transaction(봇 사용자 트랜잭션)
@@ -75,3 +75,15 @@ $ create table transaction(
 - user_name char(20)
 - stake_key char(50)
 - command char(30) // 요청 명령어
+
+## Environmnet
+PROJECT_ID= // blockfrost project id
+STAKE_ADDRESS= // test용 stake address
+TOKEN= // telegram bot token
+DONATION_ADDRESS= // donation address
+
+host= // db host url
+port=  // db port, 3006
+database= // dbname
+username= // username
+password=  // password
