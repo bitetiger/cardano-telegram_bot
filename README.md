@@ -35,7 +35,9 @@ url만 제거 시 webhook 해제
 - database : cardano_bot
 - table : user(봇 사용자), transaction(봇 사용자 트랜잭션)
 ```
-$ create user 'user'@'%' identified by 'passwd';
+$ create user 'userID'@'%' identified by 'passwd';
+$ grant all privileges on *.* to 'userID'@'%';
+// admin 접속 (sudo mysql -u userID -p 'passwd')
 $ create database cardano_bot;
 $ use cardano_bot;
 $ create table user(
