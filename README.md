@@ -31,3 +31,9 @@ url만 제거 시 webhook 해제
 - languge_code char(10) // 언어  
 - count_request int // 요청 횟수   
 - stake_key char(50) // wallet 주소  
+
+### transaction table
+- chat_id int NOT NULL
+- user_name char(20)
+- stake_key char(50)
+- command char(30) // 요청 명령어
