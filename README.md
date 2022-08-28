@@ -43,6 +43,7 @@ $ grant all privileges on *.* to 'userID'@'%';
 $ create database cardano_bot;
 
 $ use cardano_bot;
+
 $ create table user(
     chat_id int NOT NULL,   
     user_name char(20),   
