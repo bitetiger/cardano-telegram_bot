@@ -2,7 +2,14 @@
 
 ## description
 - Cardano wallet을 확인할 수 있는 텔레그램 봇
-- 특정 지갑의 자산과 Pool, 스테이킹 수익을 모두 확인가능 
+- 특정 지갑의 자산과 Pool, 스테이킹 수익을 모두 확인가능
+
+## Structure
+![image](https://user-images.githubusercontent.com/89952061/187059030-4b1b16f6-dd7f-49e3-a227-771d9910fec3.png)   
+1) Updater는 사용자로부터 새로운 메시지가 왔는지를 주기적으로 확인(Polling)한다.  
+2) 사용자로부터 어떤 명령어나 메시지가 왔다면 이를 Queue에 저장한 후, Dispatcher는 Update가 Queue에 넣어둔 사용자의 명령이나 메시지를 가져가서 처리한다.    
+3)  이때 각 요청에 대한 처리를 담당할 핸들러(Handler) 객체를 미리 지정해두고 요청이 들어오면 지정된 핸들러를 통해 처리한다.   
+
 ## usage
 - ![image](https://user-images.githubusercontent.com/89952061/185416915-9ae10b8b-a462-4146-8500-214411242038.png)
 - about wallet : wallet에 들어있는 ADA 수량과 스테이킹 수익 및 Pool id 확인
