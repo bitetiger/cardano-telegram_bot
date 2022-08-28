@@ -76,7 +76,7 @@ $ create table transaction(
 - stake_key char(50)
 - command char(30) // 요청 명령어
 
-## Environmnet
+## Environment variable
 - PROJECT_ID (blockfrost project id)   
 - STAKE_ADDRESS (test용 stake address)   
 - TOKEN (telegram bot token)   
