@@ -25,9 +25,9 @@ url만 제거 시 webhook 해제
 
 ## Database
 ### user table
-- chat_id int NOT NULL // 채팅 아이디   
-- user_name char(20)// tele 아이디   
-- first_name char(20)// tele 닉네임   
+- chat_id int NOT NULL // 채팅방 아이디   
+- user_name char(20) // telegram 아이디   
+- first_name char(20) // telegram 닉네임   
 - languge_code char(10) // 언어  
-- count_request int // 요청횟수   
-- stake_key char(50)// wallet 주소  
+- count_request int // 요청 횟수   
+- stake_key char(50) // wallet 주소  
