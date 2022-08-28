@@ -4,9 +4,9 @@ import os
 load_dotenv()
 
 conn = pymysql.connect(host=os.environ.get("host"), 
-                       user=os.environ.get("user"),
+                       user=os.environ.get("username"),
                        password=os.environ.get("password"),
-                       port=os.environ.get("port"),
+                       port=3306,
                        db=os.environ.get("database"), 
                        )
 cur = conn.cursor()
