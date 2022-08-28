@@ -77,13 +77,13 @@ $ create table transaction(
 - command char(30) // 요청 명령어
 
 ## Environmnet
-PROJECT_ID= // blockfrost project id   
-STAKE_ADDRESS= // test용 stake address   
-TOKEN= // telegram bot token   
-DONATION_ADDRESS= // donation address   
+- PROJECT_ID= // blockfrost project id   
+- STAKE_ADDRESS= // test용 stake address   
+- TOKEN= // telegram bot token   
+- DONATION_ADDRESS= // donation address   
 
-host= // db host url   
-port=  // db port, 3006   
-database= // dbname   
-username= // username   
-password=  // password   
+- host= // db host url   
+- port=  // db port, 3006   
+- database= // dbname   
+- username= // username   
+- password=  // password   
