@@ -1,6 +1,7 @@
 import telegram
 from telegram.ext import Updater
 import cardano_api
+import mysql
 
 from telegram.ext import MessageHandler, Filters
 from telegram import ParseMode
@@ -21,7 +22,17 @@ updater.start_polling()
 def handler(update, context):
     print(update)
     user_chat_id = update.message.chat.id
+    user_first_name = update.message.chat.first_name
+    user_user_name = update.message.chat.username
+    
+    
     print(user_chat_id)
+    print(user_first_name)
+    print(user_user_name)
+    
+    print(type(user_chat_id))
+    print(type(user_first_name))
+    print(type(user_user_name))
 
     user_text = update.message.text # 사용자가 보낸 메세지를 user_text 변수에 저장
     if user_text == "about wallet": # 지갑 정보 확인
@@ -51,6 +62,12 @@ def handler(update, context):
         
     elif user_text.startswith('stake'): # 주소 입력시 변경
         cardano_api.user_wallet = user_text
+        print(user_text)
+        stake_key_vals = (user_chat_id, user_user_name, user_first_name, 'ko' ,user_text)
+        mysql.cur.execute(mysql.stake_key, stake_key_vals)
+        mysql.conn.commit()
+        mysql.conn.close()
+        
         bot.send_message(chat_id=user_chat_id,
                          text='your stake_wallet : {}' .format(user_text), reply_markup=reply_kb_markup)
         

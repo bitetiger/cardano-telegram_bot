@@ -21,15 +21,21 @@ cur = conn.cursor()
 
 # cur.execute()
 
-# /start stake key 입력
-start = "insert into user values(1, 'user_name', 'first_name', 'ko', 1, 'stake_key')"
+# stake key 입력
+stake_key = "insert into user (chat_id, user_name, first_name, languge_code, stake_key) values(%s, %s, %s, %s, %s)"
+# cur.execute(stake_key, (3, 'dori', 'khosla', 'ko', 1, 'slakfjs'))
 #start_value = (chat_id, user_name, first_name, lan_code, count_request, stake_key)
-cur.execute(start)
+# cur.execute(start)
+
+
 
 # get balance
 
+# UPDATE user SET count_request = count_request + 1 WHERE chat_id = 12
+
+
 # about wallet
 
-# donate
-conn.commit()
-conn.close()
+# # donate
+# conn.commit()
+# conn.close()
