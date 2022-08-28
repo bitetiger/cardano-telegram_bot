@@ -31,6 +31,29 @@ https://api.telegram.org/bot${telegram_token}/setWebhook?url=
 url만 제거 시 webhook 해제
 
 ## Database
+### default
+```
+$ create database cardano_bot;
+$ use cardano_bot;
+$ create table user(
+    chat_id int NOT NULL,   
+    user_name char(20),   
+    first_name char(20),  
+    languge_code char(10), 
+    count_request int, 
+    stake_key char(50),
+    primary key(chat_id)
+);
+$ create table transaction(
+    chat_id int NOT NULL,
+    user_name char(20),
+    stake_key char(50),
+    command char(30)
+);
+
+```
+
+
 ### user table
 - chat_id int NOT NULL // 채팅방 아이디   
 - user_name char(20) // telegram 아이디   
