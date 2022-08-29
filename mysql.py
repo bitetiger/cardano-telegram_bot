@@ -10,14 +10,16 @@ conn = pymysql.connect(host=os.environ.get("host"),
                        db=os.environ.get("database"), 
                        )
 cur = conn.cursor()
-
-# INSERT IGNORE INTO 'table name' (column1, column2)
-# VALUES (11, 13)
-
 # cur.execute()
 
-# stake key 입력
-stake_key = "insert into user (chat_id, user_name, first_name, languge_code, stake_key) values(%s, %s, %s, %s, %s)"
+# /start
+# wallet이 등록되어 있는지 확인하기
+stake_key_get = "select stake_key from user where chat_id = %s"
+
+
+# register/change wallet 
+# stake key 등록 및 변경하기
+stake_key_insert = "insert into user (chat_id, user_name, first_name, stake_key) values(%s, %s, %s, %s) on duplicate key update stake_key values(%s)"
 
 # get balance
 

@@ -24,26 +24,39 @@ def handler(update, context):
     user_chat_id = update.message.chat.id
     user_first_name = update.message.chat.first_name
     user_user_name = update.message.chat.username
-    
-    
-    print(user_chat_id)
-    print(user_first_name)
-    print(user_user_name)
-    
-    print(type(user_chat_id))
-    print(type(user_first_name))
-    print(type(user_user_name))
+    user_stake_key = ''
+    # print(user_chat_id)
+    # print(user_first_name)
+    # print(user_user_name)
 
+
+    try:
+        mysql.cur.execute(mysql.stake_key_get, user_chat_id)
+        result = mysql.cur.fetchone()
+        user_stake_key = result[0]
+    except:
+        bot.send_message(chat_id=user_chat_id, text='본인 wallet의 stake_key를 등록해주세요.',
+                         reply_markup=reply_kb_markup)
+    
     user_text = update.message.text # 사용자가 보낸 메세지를 user_text 변수에 저장
+
     if user_text == "about wallet": # 지갑 정보 확인
         bot.send_message(chat_id=user_chat_id,
                          text=cardano_api.ada_accounts_result,
                          parse_mode=ParseMode.HTML,
                          disable_web_page_preview=True, reply_markup=reply_kb_markup)
 
-    elif user_text == "/start": # 처음 시작 명령어 
-        result = '안녕하세요, 카르다노 wallet 관리 봇입니다. 먼저 wallet의 stake address를 등록해주세요.'
-        bot.send_message(chat_id=user_chat_id, text=result,
+    elif user_text == "/start": # 처음 시작 명령어
+        try:    
+            mysql.cur.execute(mysql.stake_key_get, user_chat_id)
+            result = mysql.cur.fetchone()
+            # print(result[0])
+            text = '본인의 stake_key는 {} 입니다.'.format(result[0])
+            bot.send_message(chat_id=user_chat_id, text=text,
+                             reply_markup=reply_kb_markup)
+        except:    
+            text = '본인 wallet의 stake_key를 등록해주세요.'
+            bot.send_message(chat_id=user_chat_id, text=text,
                          reply_markup=reply_kb_markup)
         
     elif user_text == "get balance": # 지갑 자산 리스트 확인
@@ -62,14 +75,17 @@ def handler(update, context):
         
     elif user_text.startswith('stake'): # 주소 입력시 변경
         cardano_api.user_wallet = user_text
-        print(user_text)
-        stake_key_vals = (user_chat_id, user_user_name, user_first_name, 'ko' ,user_text)
-        mysql.cur.execute(mysql.stake_key, stake_key_vals)
-        mysql.conn.commit()
-        mysql.conn.close()
-        
-        bot.send_message(chat_id=user_chat_id,
+        stake_key_vals = (user_chat_id, user_user_name, user_first_name, user_text)
+        try:
+            mysql.cur.execute(mysql.stake_key_insert, stake_key_vals)
+            mysql.conn.commit()
+            mysql.conn.close()
+
+            bot.send_message(chat_id=user_chat_id,
                          text='your stake_wallet : {}' .format(user_text), reply_markup=reply_kb_markup)
+        except:
+            bot.send_message(chat_id=user_chat_id,
+                             text='{}의 stake key로 수정되었습니다.' .format(user_text), reply_markup=reply_kb_markup)
         
 
 echo_handler = MessageHandler(Filters.text, handler)
