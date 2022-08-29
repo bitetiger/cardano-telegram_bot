@@ -1,5 +1,6 @@
 .env
 cardano_api.cpython-38.pyc
+__pycache__
 
 # Distribution / packaging
 .Python
