@@ -19,7 +19,7 @@ stake_key_get = "select stake_key from user where chat_id = %s"
 
 # register/change wallet 
 # stake key 등록 및 변경하기
-stake_key_insert = "insert into user (chat_id, user_name, first_name, stake_key) values(%s, %s, %s, %s) on duplicate key update stake_key values(%s)"
+stake_key_insert = "insert into user (chat_id, user_name, first_name, stake_key) values(%s, %s, %s, %s) ON DUPLICATE KEY UPDATE stake_key = %s"
 
 # get balance
 

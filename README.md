@@ -50,8 +50,9 @@ $ create table user(
     first_name char(20),  
     languge_code char(10), 
     count_request int, 
-    stake_key char(50),
-    primary key(chat_id)
+    stake_key char(100),
+    primary key(chat_id),
+    UNIQUE KEY chatid (chat_id)
 );
 
 $ create table transaction(
@@ -66,7 +67,7 @@ $ create table transaction(
 - chat_id int NOT NULL // 채팅방 아이디   
 - user_name char(20) // telegram 아이디   
 - first_name char(20) // telegram 닉네임   
-- languge_code char(10) // 언어  
+- language_code char(10) // 언어  
 - count_request int // 요청 횟수   
 - stake_key char(50) // wallet 주소  
 
