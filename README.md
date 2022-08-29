@@ -27,7 +27,7 @@ callback_url = lambda API url
 ![image](https://user-images.githubusercontent.com/89952061/187029740-6210d934-f03d-467e-8d96-5b8186aa9d5a.png)
 
 ### telegram bot webhook 해제   
-https://api.telegram.org/bot${telegram_token}/setWebhook?url=
+https://api.telegram.org/bot${telegram_token}/setWebhook?url=   
 url만 제거 시 webhook 해제
 
 ## MySQL Database
