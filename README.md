@@ -64,6 +64,7 @@ $ create table transaction(
 
 ```
 ### user table
+![image](https://user-images.githubusercontent.com/89952061/187222220-12cbaa9b-d048-4d3d-8acb-4a9bf10aadeb.png)
 - chat_id int NOT NULL // 채팅방 아이디   
 - user_name char(20) // telegram 아이디   
 - first_name char(20) // telegram 닉네임   
