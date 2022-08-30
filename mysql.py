@@ -29,7 +29,7 @@ stake_key_insert = "insert into user (chat_id, user_name, first_name, stake_key)
 # - content varchar(400)
 
 # get balance & about wallet
-command_insert = "insert into transaction (chat_id, user_name, stake_key, command, content) values(%s, %s, %s, %s, %s)"
+command_insert = "insert into transaction (chat_id, user_name, stake_key, command) values(%s, %s, %s, %s)"
 
 # UPDATE user SET count_request = count_request + 1 WHERE chat_id = 12
 

@@ -67,7 +67,9 @@ def handler(update, context):
                 
     else:
         try: # chat_id에 맞는 stake_key가 db에 저장되어 있는지 확인
-            check_stake_key(user_stake_key)
+            check_stake_key(user_chat_id)
+            print('스테이크 키가 있다!!!!!!!!!')
+            print(check_stake_key)
         except: # stake_key가 db에 없을 경우
             bot.send_message(chat_id=user_chat_id, text='등록하거나 변경할 새 stake_wallet 주소를 주세요.', reply_markup=reply_kb_markup)
         
@@ -75,32 +77,30 @@ def handler(update, context):
 
         else:  # stake_Key가 db에 있을 경우
             if user_text == "about wallet":  # 지갑 정보 확인
-                db_vals = (user_chat_id, user_user_name, user_stake_key, 'about wallet', cardano_api.about_wallet())
+                result = cardano_api.about_wallet(check_stake_key(user_chat_id))
+                print(result)
+                db_vals = (user_chat_id, user_user_name, check_stake_key(user_chat_id), 'about wallet')
                 try:
                     mysql.cur.execute(mysql.command_insert, db_vals)
                     mysql.conn.commit()
                 finally:
-                    mysql.conn.close()
-
-                bot.send_message(chat_id=user_chat_id,
-                             text=cardano_api.about_wallet(),
+                    # mysql.conn.close()
+                    bot.send_message(chat_id=user_chat_id,
+                             text=result,
                              parse_mode=ParseMode.HTML,
                              disable_web_page_preview=True, reply_markup=reply_kb_markup)
 
             elif user_text == "get balance":  # 지갑 자산 리스트 확인
-                db_vals = (user_chat_id, user_user_name, user_stake_key,'get balance', cardano_api.assets())
+                result = cardano_api.assets(check_stake_key(user_chat_id))
+                print(result)
+                db_vals = (user_chat_id, user_user_name, check_stake_key(user_chat_id),'get balance')
                 try:
                     mysql.cur.execute(mysql.command_insert, db_vals)
                     mysql.conn.commit()
                 finally:
-                    mysql.conn.close()
-
-
-                result = cardano_api.assets()
-                bot.send_message(chat_id=user_chat_id, text=result,
+                    # mysql.conn.close()
+                    bot.send_message(chat_id=user_chat_id, text=result,
                          reply_markup=reply_kb_markup)
                 
-    
-
 echo_handler = MessageHandler(Filters.text, handler)
 dispatcher.add_handler(echo_handler)
