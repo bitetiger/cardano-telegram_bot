@@ -58,8 +58,9 @@ $ create table user(
 $ create table transaction(
     chat_id int NOT NULL,
     user_name char(20),
-    stake_key char(50),
-    command char(30)
+    stake_key char(100),
+    command char(30),
+    content varchar(400)
 );
 
 ```
@@ -75,8 +76,9 @@ $ create table transaction(
 ### transaction table
 - chat_id int NOT NULL
 - user_name char(20)
-- stake_key char(50)
+- stake_key char(100)
 - command char(30) // 요청 명령어
+- content varchar(400)
 
 ## Environment variable
 - PROJECT_ID (blockfrost project id)   

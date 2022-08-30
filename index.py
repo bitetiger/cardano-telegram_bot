@@ -71,13 +71,31 @@ def handler(update, context):
         except: # stake_key가 db에 없을 경우
             bot.send_message(chat_id=user_chat_id, text='등록하거나 변경할 새 stake_wallet 주소를 주세요.', reply_markup=reply_kb_markup)
         
-        else: # stake_Key가 db에 있을 경우
+        # command_insert = "insert into transaction (chat_id, user_name, stake_key, command, content) values(%s, %s, %s, %s, %s)"
+
+        else:  # stake_Key가 db에 있을 경우
             if user_text == "about wallet":  # 지갑 정보 확인
+                db_vals = (user_chat_id, user_user_name, user_stake_key, 'about wallet', cardano_api.about_wallet())
+                try:
+                    mysql.cur.execute(mysql.command_insert, db_vals)
+                    mysql.conn.commit()
+                finally:
+                    mysql.conn.close()
+
                 bot.send_message(chat_id=user_chat_id,
                              text=cardano_api.about_wallet(),
                              parse_mode=ParseMode.HTML,
                              disable_web_page_preview=True, reply_markup=reply_kb_markup)
+
             elif user_text == "get balance":  # 지갑 자산 리스트 확인
+                db_vals = (user_chat_id, user_user_name, user_stake_key,'get balance', cardano_api.assets())
+                try:
+                    mysql.cur.execute(mysql.command_insert, db_vals)
+                    mysql.conn.commit()
+                finally:
+                    mysql.conn.close()
+
+
                 result = cardano_api.assets()
                 bot.send_message(chat_id=user_chat_id, text=result,
                          reply_markup=reply_kb_markup)
