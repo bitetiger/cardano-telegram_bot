@@ -73,11 +73,11 @@ $ create table transaction(
 - stake_key char(50) // wallet 주소  
 
 ### transaction table
+![image](https://user-images.githubusercontent.com/89952061/187405547-b4b3acfe-b2e2-4c34-b784-de551b634df6.png)   
 - chat_id int NOT NULL
 - user_name char(20)
 - stake_key char(100)
 - command char(30) // 요청 명령어
-- content varchar(400)
 
 ## Environment variable
 - PROJECT_ID (blockfrost project id)   
